@@ -1,7 +1,7 @@
-const create = () => {};
+const create = (payload) => {};
 const list = () => {};
-const getById = () => {};
-const updateById = () => {};
-const deleteById = () => {};
+const getById = (id) => {};
+const updateById = (id, payload) => {};
+const deleteById = (id) => {};
 
 module.exports = { create, list, getById, updateById, deleteById };
