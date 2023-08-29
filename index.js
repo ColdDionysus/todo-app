@@ -1,4 +1,5 @@
 require("dotenv").config();
+
 const express = require("express");
 
 const app = express();
@@ -15,15 +16,13 @@ try {
   next(e);
 }
 
-app.use("/", (err, req, res, next) => {
-  err = err ? err.toString() : "Something went wrong....";
-  res.status(500).json({ data: "", msg: err });
-});
-
 app.use(express.json());
 
 app.use("/", indexRouter);
-
+app.use((err, req, res, next) => {
+  err = err ? err.toString() : "Something went wrong....";
+  res.status(500).json({ data: "", msg: err });
+});
 app.listen(PORT, () => {
   console.log(`App is running on ${PORT}`);
 });
