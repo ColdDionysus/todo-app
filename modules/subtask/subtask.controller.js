@@ -1,10 +1,22 @@
-const create = (payload) => {};
+const SubtaskModel = require("./subtask.model");
 
-const list = () => {};
+const create = async (payload) => {
+  return await SubtaskModel.create(payload);
+};
 
-const getById = (id) => {};
+const list = async () => {
+  return await SubtaskModel.find();
+};
 
-const updateById = (id, payload) => {};
-const deleteById = (id) => {};
+const getById = async (id) => {
+  return await SubtaskModel.findById({ _id: id });
+};
+
+const updateById = async (id, payload) => {
+  return await SubtaskModel.updateOne({ _id: id }, payload);
+};
+const deleteById = async (id) => {
+  return await SubtaskModel.deleteOne({ _id: id });
+};
 
 module.exports = { create, list, getById, updateById, deleteById };

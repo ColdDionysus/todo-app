@@ -1,48 +1,48 @@
 const router = require("express").Router();
 const subtaskController = require("./subtask.controller");
 
-router.post("/", (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
-    const { payload } = req.body;
-    const result = subtaskController.create(payload);
+    const result = await subtaskController.create(req.body);
     res.json({ data: result, msg: "Success" });
   } catch (e) {
     next(e);
   }
 });
 
-router.get("/", (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
-    const result = subtaskController.list();
+    const result = await subtaskController.list();
+    console.log(result);
     res.json({ data: result, msg: "Success" });
   } catch (e) {
     next(e);
   }
 });
 
-router.get("/:id", (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const result = subtaskController.getById(id);
+    const result = await subtaskController.getById(id);
     res.json({ data: result, msg: "Sucess" });
   } catch (e) {
     next(e);
   }
 });
-router.put("/:id", (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { payload } = req.body;
-    const result = subtaskController.updateById(id, payload);
+
+    const result = await subtaskController.updateById(id, req.body);
     res.json({ data: result, msg: "Success" });
   } catch (e) {
     next(e);
   }
 });
-router.delete("/:id", (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const result = subtaskController.deleteById(id);
+    const result = await subtaskController.deleteById(id);
     res.json({ data: result, msg: "Success" });
   } catch (e) {
     next(e);
