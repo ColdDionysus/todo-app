@@ -13,7 +13,9 @@ const getById = async (id) => {
 };
 
 const updateById = async (id, payload) => {
-  return await SubtaskModel.updateOne({ _id: id }, payload);
+  return await SubtaskModel.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
 };
 const deleteById = async (id) => {
   return await SubtaskModel.deleteOne({ _id: id });

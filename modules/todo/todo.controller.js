@@ -10,7 +10,7 @@ const getById = async (id) => {
   return await TodoModel.findOne({ _id: id });
 };
 const updateById = async (id, payload) => {
-  return await TodoModel.updateOne({ _id: id }, payload);
+  return await TodoModel.findOneAndUpdate({ _id: id }, payload, { new: true });
 };
 const deleteById = async (id) => {
   return await TodoModel.deleteOne({ _id: id });
