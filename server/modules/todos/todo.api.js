@@ -1,10 +1,10 @@
 const router = require("express").Router();
-const subtaskController = require("./subtask.controller");
+const TodoController = require("./todo.controller");
 
 router.post("/", async (req, res, next) => {
   try {
-    const result = await subtaskController.create(req.body);
-    res.json({ data: result, msg: "Success" });
+    const result = await TodoController.create(req.body);
+    res.json({ data: result, msg: "success" });
   } catch (e) {
     next(e);
   }
@@ -12,9 +12,8 @@ router.post("/", async (req, res, next) => {
 
 router.get("/", async (req, res, next) => {
   try {
-    const result = await subtaskController.list();
-    console.log(result);
-    res.json({ data: result, msg: "Success" });
+    const result = await TodoController.list();
+    res.json({ data: result, msg: "success" });
   } catch (e) {
     next(e);
   }
@@ -23,27 +22,28 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const result = await subtaskController.getById(id);
-    res.json({ data: result, msg: "Sucess" });
+    const result = await TodoController.getById(id);
+    res.json({ data: result, msg: "success" });
   } catch (e) {
     next(e);
   }
 });
+
 router.put("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-
-    const result = await subtaskController.updateById(id, req.body);
-    res.json({ data: result, msg: "Success" });
+    const result = await TodoController.updateById(id, req.body);
+    res.json({ data: result, msg: "success" });
   } catch (e) {
     next(e);
   }
 });
+
 router.delete("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const result = await subtaskController.deleteById(id);
-    res.json({ data: result, msg: "Success" });
+    const result = await TodoController.deleteById(id);
+    res.json({ data: result, msg: "success" });
   } catch (e) {
     next(e);
   }
